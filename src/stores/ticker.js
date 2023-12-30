@@ -2,18 +2,18 @@ import { acceptHMRUpdate, defineStore } from 'pinia'
 
 export const useTickerStore = defineStore('TickerStore', {
   state: () => ({
-    tickers: [],
+    tickers: []
   }),
   actions: {
     async load() {
-      await new Promise(resolve => setTimeout(resolve, 1000))
+      await new Promise((resolve) => setTimeout(resolve, 1000))
       const { data: tickers } = (await import('@/data/tickers.json')).default
       this.tickers = tickers.slice(0, 9)
     }
   },
   getters: {
-    isEmpty: (state) => state.tickers.length === 0,
-  },
+    isEmpty: (state) => state.tickers.length === 0
+  }
 })
 
 if (import.meta.hot) {

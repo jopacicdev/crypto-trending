@@ -21,11 +21,7 @@ const { tickers, isEmpty } = storeToRefs(store)
         <Skeleton :shape="'rect'" :width="'100%'" :height="'300px'" />
       </template>
       <template v-else>
-        <CryptoCurrencyCard
-          v-for="ticker in tickers"
-          :key="ticker.symbol"
-          :ticker="ticker"
-        />
+        <CryptoCurrencyCard v-for="ticker in tickers" :key="ticker.symbol" :ticker="ticker" />
       </template>
     </section>
     <footer class="flex justify-center mt-6">
