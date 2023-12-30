@@ -10,10 +10,22 @@ export const useTickerStore = defineStore('TickerStore', {
       await new Promise((resolve) => setTimeout(resolve, 200))
       const { data: tickers } = (await import('@/data/tickers.json')).default
       this.tickers = tickers.slice(0, 9)
+    },
+    sortTrending() {
+      this.tickers = this.tickers.sort((a, b) => b.cmc_rank - a.cmc_rank)
+    },
+    sortPrice() {
+      this.tickers = this.tickers.sort((a, b) => b.quote.USD.price - a.quote.USD.price)
+    },
+    sortVolume() {
+      this.tickers = this.tickers.sort((a, b) => b.quote.USD.volume_24h - a.quote.USD.volume_24h)
+    },
+    sortMarketCap() {
+      this.tickers = this.tickers.sort((a, b) => b.quote.USD.market_cap - a.quote.USD.market_cap)
     }
   },
   getters: {
-    isEmpty: (state) => state.tickers.length === 0
+    isEmpty: (state) => state.tickers.length === 0,
   }
 })
 

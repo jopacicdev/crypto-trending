@@ -4,6 +4,7 @@ import Skeleton from 'primevue/skeleton'
 import { useTickerStore } from '@/stores/ticker'
 import { useFavoriteStore } from '@/stores/favorite'
 import { storeToRefs } from 'pinia'
+import SortButtonGroup from '@/components/SortButtonGroup.vue'
 
 const tickerStore = useTickerStore()
 tickerStore.load()
@@ -18,6 +19,9 @@ const { favorites } = storeToRefs(favoriteStore)
   <main class="p-6 bg-gray-100 dark:bg-gray-800 min-h-screen">
     <header class="flex items-center justify-between mb-6">
       <h1 class="text-2xl font-semibold dark:text-white">🔥 Top Trending Cryptocurrencies 🚀</h1>
+      <div class="flex gap-2 text-white">
+        <SortButtonGroup />
+      </div>
     </header>
     <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <template v-if="isEmpty">
@@ -35,8 +39,5 @@ const { favorites } = storeToRefs(favoriteStore)
         />
       </template>
     </section>
-    <footer class="flex justify-center mt-6">
-      <button class="bg-blue-500 text-white">Load More</button>
-    </footer>
   </main>
 </template>
