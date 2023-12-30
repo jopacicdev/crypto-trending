@@ -9,7 +9,8 @@ export const useTickerStore = defineStore('TickerStore', {
       // Fake the delay, like the real api would
       await new Promise((resolve) => setTimeout(resolve, 200))
       const { data: tickers } = (await import('@/data/tickers.json')).default
-      this.tickers = tickers.slice(0, 9)
+      this.tickers = tickers.slice(0, 18)
+      this.sortPrice()
     },
     sortTrending() {
       this.tickers = this.tickers.sort((a, b) => b.cmc_rank - a.cmc_rank)

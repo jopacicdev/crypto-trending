@@ -22,6 +22,12 @@ defineProps<{
 }>()
 
 defineEmits(['favorite'])
+
+const moneyFormatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+});
+const numberFormatter = new Intl.NumberFormat('en-US');
 </script>
 
 <template>
@@ -34,13 +40,13 @@ defineEmits(['favorite'])
     </template>
     <template #subtitle> {{ ticker.symbol }} </template>
     <template #content>
-      <h3 class="text-lg font-semibold">${{ ticker.quote.USD.price.toFixed(2) }}</h3>
-      <p>Volume: ${{ ticker.quote.USD.volume_24h.toFixed(2) }}</p>
-      <p>Market Cap: ${{ ticker.quote.USD.market_cap.toFixed(2) }}</p>
-      <p>Circulating Supply: {{ ticker.circulating_supply }}</p>
+      <h3 class="text-lg font-semibold">{{ moneyFormatter.format(ticker.quote.USD.price) }}</h3>
+      <p>Volume: {{ moneyFormatter.format(ticker.quote.USD.volume_24h) }}</p>
+      <p>Market Cap: {{ moneyFormatter.format(ticker.quote.USD.market_cap) }}</p>
+      <p>Circulating Supply: {{ numberFormatter.format(ticker.circulating_supply) }}</p>
       <Badge
         :severity="ticker.quote.USD.percent_change_24h >= 0 ? 'success' : 'danger'"
-        :value="ticker.quote.USD.percent_change_24h"></Badge>
+        :value="numberFormatter.format(ticker.quote.USD.percent_change_24h)"></Badge>
     </template>
   </Card>
 </template>
