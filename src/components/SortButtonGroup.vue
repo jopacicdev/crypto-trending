@@ -8,8 +8,32 @@ const { isEmpty } = storeToRefs(tickerStore)
 </script>
 
 <template>
-  <Button label="Trending" icon="pi pi-chart-line" size="small" :loading="isEmpty" @click="tickerStore.sortTrending()" />
-  <Button label="Price" icon="pi pi-dollar" size="small" :loading="isEmpty" @click="tickerStore.sortPrice()" />
-  <Button label="Volume" icon="pi pi-chart-pie" size="small" :loading="isEmpty" @click="tickerStore.sortVolume()" />
-  <Button label="Market Cap" icon="pi pi-chart-bar" size="small" :loading="isEmpty" @click="tickerStore.sortMarketCap()" />
+  <Button
+    label="Trending"
+    icon="pi pi-chart-line"
+    size="small"
+    :loading="isEmpty"
+    @click="tickerStore.sortTrending()"
+  />
+  <Button
+    label="Price"
+    icon="pi pi-dollar"
+    size="small"
+    :loading="isEmpty"
+    @click="tickerStore.sortPrice()"
+  />
+  <Button
+    label="Volume"
+    icon="pi pi-chart-pie"
+    size="small"
+    :loading="isEmpty"
+    @click="tickerStore.sortVolume()"
+  />
+  <Button
+    label="Market Cap"
+    icon="pi pi-chart-bar"
+    size="small"
+    :loading="isEmpty"
+    @click="tickerStore.sortMarketCap()"
+  />
 </template>

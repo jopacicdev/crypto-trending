@@ -26,7 +26,7 @@ export const useTickerStore = defineStore('TickerStore', {
     }
   },
   getters: {
-    isEmpty: (state) => state.tickers.length === 0,
+    isEmpty: (state) => state.tickers.length === 0
   }
 })
 

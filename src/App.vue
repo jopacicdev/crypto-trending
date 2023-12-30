@@ -18,9 +18,7 @@ const { favorites } = storeToRefs(favoriteStore)
 <template>
   <main class="p-6 bg-gray-100 dark:bg-gray-800 min-h-screen">
     <header class="flex items-center justify-between mb-6">
-      <h1 class="text-2xl font-semibold dark:text-white">
-        🔥 Top Trending Cryptocurrencies 🚀
-      </h1>
+      <h1 class="text-2xl font-semibold dark:text-white">🔥 Top Trending Cryptocurrencies 🚀</h1>
       <div class="flex gap-2 text-white">
         <span>Sort by:</span>
         <SortButtonGroup />

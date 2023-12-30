@@ -25,9 +25,9 @@ defineEmits(['favorite'])
 
 const moneyFormatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
-  currency: 'USD',
-});
-const numberFormatter = new Intl.NumberFormat('en-US');
+  currency: 'USD'
+})
+const numberFormatter = new Intl.NumberFormat('en-US')
 </script>
 
 <template>
@@ -46,7 +46,8 @@ const numberFormatter = new Intl.NumberFormat('en-US');
       <p>Circulating Supply: {{ numberFormatter.format(ticker.circulating_supply) }}</p>
       <Badge
         :severity="ticker.quote.USD.percent_change_24h >= 0 ? 'success' : 'danger'"
-        :value="numberFormatter.format(ticker.quote.USD.percent_change_24h)"></Badge>
+        :value="numberFormatter.format(ticker.quote.USD.percent_change_24h)"
+      ></Badge>
     </template>
   </Card>
 </template>
