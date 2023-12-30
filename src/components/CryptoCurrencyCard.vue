@@ -18,12 +18,20 @@ interface Ticker {
 
 defineProps<{
   ticker: Ticker
+  isFavorite: boolean
 }>()
+
+defineEmits(['favorite'])
 </script>
 
 <template>
   <Card>
-    <template #title> {{ ticker.name }} </template>
+    <template #title>
+      {{ ticker.name }}
+      <button @click="$emit('favorite', ticker.symbol)">
+        <i class="pi" :class="{ 'pi-star': !isFavorite, 'pi-star-fill': isFavorite }"></i>
+      </button>
+    </template>
     <template #subtitle> {{ ticker.symbol }} </template>
     <template #content>
       <h3 class="text-lg font-semibold">${{ ticker.quote.USD.price.toFixed(2) }}</h3>

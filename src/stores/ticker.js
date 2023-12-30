@@ -6,7 +6,8 @@ export const useTickerStore = defineStore('TickerStore', {
   }),
   actions: {
     async load() {
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+      // Fake the delay, like the real api would
+      await new Promise((resolve) => setTimeout(resolve, 200))
       const { data: tickers } = (await import('@/data/tickers.json')).default
       this.tickers = tickers.slice(0, 9)
     }

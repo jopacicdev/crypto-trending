@@ -2,11 +2,16 @@
 import CryptoCurrencyCard from '@/components/CryptoCurrencyCard.vue'
 import Skeleton from 'primevue/skeleton'
 import { useTickerStore } from '@/stores/ticker'
+import { useFavoriteStore } from '@/stores/favorite'
 import { storeToRefs } from 'pinia'
 
-const store = useTickerStore()
-store.load()
-const { tickers, isEmpty } = storeToRefs(store)
+const tickerStore = useTickerStore()
+tickerStore.load()
+
+const favoriteStore = useFavoriteStore()
+
+const { tickers, isEmpty } = storeToRefs(tickerStore)
+const { favorites } = storeToRefs(favoriteStore)
 </script>
 
 <template>
@@ -21,7 +26,13 @@ const { tickers, isEmpty } = storeToRefs(store)
         <Skeleton :shape="'rect'" :width="'100%'" :height="'300px'" />
       </template>
       <template v-else>
-        <CryptoCurrencyCard v-for="ticker in tickers" :key="ticker.symbol" :ticker="ticker" />
+        <CryptoCurrencyCard
+          v-for="ticker in tickers"
+          :key="ticker.symbol"
+          :ticker="ticker"
+          :isFavorite="favorites.indexOf(ticker.symbol) > -1"
+          @favorite="(symbol) => favoriteStore.toggleFavorite(symbol)"
+        />
       </template>
     </section>
     <footer class="flex justify-center mt-6">
