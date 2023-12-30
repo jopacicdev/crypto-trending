@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import CryptoCurrencyCard from '@/components/CryptoCurrencyCard.vue'
+import Skeleton from 'primevue/skeleton'
 import { useTickerStore } from '@/stores/ticker'
 import { storeToRefs } from 'pinia'
-useTickerStore().load()
-const { tickers } = storeToRefs(useTickerStore())
+
+const store = useTickerStore()
+store.load()
+const { tickers, isEmpty } = storeToRefs(store)
 </script>
 
 <template>
@@ -12,14 +15,21 @@ const { tickers } = storeToRefs(useTickerStore())
       <h1 class="text-2xl font-semibold dark:text-white">🔥 Top Trending Cryptocurrencies 🚀</h1>
     </header>
     <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <template v-if="isEmpty">
+        <Skeleton :shape="'rect'" :width="'100%'" :height="'300px'" />
+        <Skeleton :shape="'rect'" :width="'100%'" :height="'300px'" />
+        <Skeleton :shape="'rect'" :width="'100%'" :height="'300px'" />
+      </template>
+      <template v-else>
         <CryptoCurrencyCard
           v-for="ticker in tickers"
           :key="ticker.symbol"
           :ticker="ticker"
         />
+      </template>
     </section>
     <footer class="flex justify-center mt-6">
-<!--      <button class="bg-blue-500 text-white">Load More</button>-->
+      <button class="bg-blue-500 text-white">Load More</button>
     </footer>
   </main>
 </template>
